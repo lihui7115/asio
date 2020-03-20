@@ -10,8 +10,11 @@ int main()
   io_service ioservice;
 
   steady_timer timer{ioservice, std::chrono::seconds{3}};
+  std::cout << "begin to wait timer\n";
   timer.async_wait([](const boost::system::error_code &ec)
     { std::cout << "3 sec\n"; });
+    
+  std::cout << "do something else\n";
 
   ioservice.run();
 }
